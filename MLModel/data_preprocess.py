@@ -35,6 +35,7 @@ def data_preprocess(data_frame: pd.DataFrame) -> pd.DataFrame:
             data_frame[column] = data_frame[column].astype('float32')
         else:
             # Map Depression State to numerical values and scale
+            # Since it is scaled - 0: Severe, 0.5: Mild Moderate, 1: No depression
             depression_state_map = {'No depression': 3, 'Mild': 2, 'Moderate': 2, 'Severe': 1}
             data_frame['Depression State'] = data_frame['Depression State'].replace(depression_state_map)
             data_frame['Depression State'] = scaler.fit_transform(data_frame[['Depression State']])
@@ -56,9 +57,11 @@ def data_preprocess(data_frame: pd.DataFrame) -> pd.DataFrame:
     data_frame = pd.concat([data_frame, df_sleep, df_fatigue, df_worthlessness, df_aggression], axis=1)
 
     # Retain only the specified columns
+    # Dimension Reduction is now Complete
     retained_columns = ['Sleep_PCA', 'Fatigue_PCA', 'Worthlessness_PCA', 'Aggression_PCA', 'Appetite', 'Panic Attacks', 'Depression State']
     data_frame = data_frame[retained_columns]
 
+    # Scale the PCA columns between 0 and 1 as we dont want negative values.
     for column in data_frame.columns:
         if column != 'Depression State':
             data_frame[column] = scaler.fit_transform(data_frame[[column]])
