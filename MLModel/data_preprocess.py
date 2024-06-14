@@ -74,5 +74,4 @@ def data_preprocess(data_frame: pd.DataFrame) -> pd.DataFrame:
 new_df = data_preprocess(df)
 
 # Print the DataFrame info and save to CSV
-print(new_df.info())
 new_df.to_csv('Depression_clean.csv', index=False)
