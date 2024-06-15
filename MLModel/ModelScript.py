@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_IGcEIJBm6B6XXDqtxbLJC1ODd0YAy5p1YVGJS"
+os.environ["REPLICATE_API_TOKEN"] = "r8_1amFZUh8bIR53EJr63QClPgQg8BdBL02mvp9K"
 
 
 def regressor_model(filename):
