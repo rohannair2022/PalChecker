@@ -4,7 +4,7 @@ from sklearn.decomposition import PCA
 
 # Load the dataset
 df = pd.read_csv('Depression.csv')
-
+print(df.info())
 
 def data_preprocess(data_frame: pd.DataFrame) -> pd.DataFrame:
     # Drop rows with missing values

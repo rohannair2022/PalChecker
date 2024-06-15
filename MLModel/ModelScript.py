@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_9QvQHdYevcYMYBMy1uKuLLQHkWSv26734ujkN"
+os.environ["REPLICATE_API_TOKEN"] = "INSERT-TOKEN_HERE"
 
 
 def regressor_model(x_test):
