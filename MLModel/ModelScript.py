@@ -37,12 +37,12 @@ def regressor_model(filename):
     ):
         output_llm += str(event)
 
-    if "Normal Day" in output_llm:
-        return (0 + output_model_score)/2
+    if "Bad Day" in output_llm:
+        return max(0, (0 + output_model_score)/2)
     elif "Medium Day" in output_llm:
-        return (0.5 + output_model_score)/2
-    elif "Bad Day" in output_llm:
-        return (1 + output_model_score) / 2
+        return max(0.60,(0.5 + output_model_score)/2)
+    elif "Normal Day" in output_llm:
+        return max(1, (1 + output_model_score) / 2)
     else:
         return output_model_score
 
