@@ -30,12 +30,14 @@ def data_preprocess(data_frame: pd.DataFrame) -> pd.DataFrame:
     # Normalize data with MinMaxScaler
     scaler = MinMaxScaler()
     for column in data_frame.columns:
-        if column != 'Depression State':
+        if column == 'Sleep':
+            data_frame[column] = scaler.fit_transform(data_frame[[column]])
+            data_frame[column] = data_frame[column].astype('float32')
+        elif column != 'Depression State':
             data_frame[column] = scaler.fit_transform(data_frame[[column]])
             data_frame[column] = data_frame[column].astype('float32')
         else:
             # Map Depression State to numerical values and scale
-            # Since it is scaled - 0: Severe, 0.5: Mild Moderate, 1: No depression
             depression_state_map = {'No depression': 3, 'Mild': 2, 'Moderate': 2, 'Severe': 1}
             data_frame['Depression State'] = data_frame['Depression State'].replace(depression_state_map)
             data_frame['Depression State'] = scaler.fit_transform(data_frame[['Depression State']])
