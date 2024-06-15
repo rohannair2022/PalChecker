@@ -88,6 +88,21 @@ function welcomeMsg() {
     });
 }
 
+function analyticsMsg () {
+    const div = document.createElement('div');
+    div.className = 'analytics-msg';
+    chatBox.append(div);
+    const analyticsText = `Thank you for using BrightMind! You will be forwarded to the
+        analytics page now.`;
+    
+    typeText(analyticsText, div, () => {
+        setTimeout(() => {
+            // Redirect to the analytics page
+            window.location.href = 'analytics.html';
+        }, 1000);
+    });
+}
+
 function startChat() {
     setTimeout(() => {
         welcomeMsg();
@@ -133,6 +148,9 @@ chatBox.addEventListener('click', (e) => {
             setTimeout(() => {
                 askQuestion(i);
             }, 1000); // Delay before asking the next question
+        }
+        else {
+            analyticsMsg();
         }
     }
 });
