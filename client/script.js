@@ -97,7 +97,8 @@ function analyticsMsg () {
     
     typeText(analyticsText, div, () => {
         setTimeout(() => {
-            // link to new page
+            // Redirect to the analytics page
+            window.location.href = 'analytics.html';
         }, 1000);
     });
 }
