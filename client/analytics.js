@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (i === currentDate.getDay()) {
         day.classList.add('green');
       }
-
+      
       daysContainer.appendChild(day);
     }
   });
