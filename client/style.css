@@ -1,0 +1,161 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f4f8; 
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 20px;
+    background-color: #caf0f8; 
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+header:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.favicon {
+    width: 140px;
+    height: 130px;
+}
+
+.app-title {
+    color: #d8b4fe; 
+    font-family: Coiny, sans-serif;
+    font-size: 44px;
+    margin-top: 1.4rem;
+}
+
+/* Chat Styles */
+.chat {
+    font-family: Sono;
+    font-weight: 500;
+
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ffffff; /* White background for chat area */
+    height: 100vh;
+    margin: 30px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for container */
+}
+
+.welcome-msg, .question, .response, .analytics-msg {
+    background-color: #caf0f8;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    align-self: flex-start;
+
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.welcome-msg, .question, .analytics-msg {
+    margin: 0;
+    max-width: 700px;
+}
+
+/* Chat Bubble Styles */
+.response {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    background-color: #ade8f4; 
+    gap: 10px;
+    max-width: 600px;
+}
+
+.btns {
+    display: flex;
+    gap: 0.8rem;
+    align-self: flex-end;
+}
+
+.rating, .submit-btn {
+    background-color: #5e60ce;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+    font-family: Sono;
+    font-weight: 500;
+}
+
+.rating:disabled {
+    background-color: #7c7dcc;
+}
+
+.checked {
+    font-size: 16px;
+}
+
+.submit-btn {
+    font-size: 15px;
+}
+
+.rating:hover, .submit-btn:hover {
+    background-color: #443f94;
+}
+
+.additional-detail {
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    min-height: 75px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Sono;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Typewriter effect */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+
+.typewriter {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid black;
+    animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
+    max-width: 100%;
+    white-space: normal;
+}
