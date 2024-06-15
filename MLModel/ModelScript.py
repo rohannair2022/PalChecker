@@ -4,23 +4,21 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = "INSERT-TOKEN_HERE"
+os.environ["REPLICATE_API_TOKEN"] = "r8_IGcEIJBm6B6XXDqtxbLJC1ODd0YAy5p1YVGJS"
 
 
-def regressor_model(x_test):
+def regressor_model(filename):
 
     reg = RandomForestRegressor()
     data_frame = pd.read_csv('Depression_clean.csv')
-    x_test_input = pd.read_csv(x_test)
-
     x_train = data_frame.iloc[:, :-1]
     y_train = data_frame.iloc[:, -1]
-
     reg.fit(x_train, y_train)
 
+    x_test_input = pd.read_csv(filename)
     replace_map = {1: 0, 2: 0.33, 3: 0.66, 4: 1}
     x_test = x_test_input.replace(replace_map)
-    output_model = reg.predict(x_test)
+    output_model_score = reg.predict(x_test)
 
     # The meta/llama-2-70b-chat model can stream output as it's running.
     output_llm = ""
@@ -40,11 +38,13 @@ def regressor_model(x_test):
         output_llm += str(event)
 
     if "Normal Day" in output_llm:
-        return (0 + output_model)/2
+        return (0 + output_model_score)/2
     elif "Medium Day" in output_llm:
-        return (0.5 + output_model)/2
+        return (0.5 + output_model_score)/2
+    elif "Bad Day" in output_llm:
+        return (1 + output_model_score) / 2
     else:
-        return (1 + output_model) / 2
+        return output_model_score
 
 
 print(regressor_model('Test.csv'))
