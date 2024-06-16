@@ -34,7 +34,7 @@ http://palchecker.xyz:3000/
           - Found the dataset for the machine learning model on Kaggle.  
             https://www.kaggle.com/datasets/hamjashaikh/mental-health-detection-dataset
 
-          - Additionally I also researched on 
+          - Additionally I also researched on color psychology to provide ingights on what color is best suited for the website based on various factors.
         - **Video creation and Slides Presentation**
           - Created a comprehensive video of what the project is about, what problem it intends to solve and a walkthrough demo of the project.
             
