@@ -26,11 +26,23 @@ http://palchecker.xyz:3000/
       - **Backend for Dynmaic Calender Functioning (IndexedDB)**
          
          ![Part1 Calender Backend Functioning](MLModel/ReadmePt3.png?raw=true "Part1 Calender Backend Functioning")
-     
-  1) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
-  2) ### Preet Patel  :  Front-end (JavaScript ES6, HTML, CSS)
+  
+  2) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
+        - **Ideation Solution**
+          - Chose the topic of mental health and found an impending problem of individuals not having a way to assess how their days are going. Therefore, decided to devise the idea of PalChecker.
+        - **Wireframes**
+          - Used Balsamiq to design the wireframes of the website based on the idea of simplicity with the help of Preet.
+        - **External Research**
+          - Found the dataset for the machine learning model on Kaggle.  
+            https://www.kaggle.com/datasets/hamjashaikh/mental-health-detection-dataset
+
+          - Additionally I also researched on 
+        - **Video creation and Slides Presentation**
+          - Created a comprehensive video of what the project is about, what problem it intends to solve and a walkthrough demo of the project.
+            
+  4) ### Preet Patel  :  Front-end (JavaScript ES6, HTML, CSS)
         - **Interactive Chat Interface**
-          - Developed a dynamic chat interface that guides users through mental health-related questions with a typing                                             effect for enhanced engagement.
+          - Developed a dynamic chat interface that guides users through mental health-related questions with a typing effect for enhanced engagement.
         - **User Input Handling and Validation**
           - Set up event listeners for rating buttons and submit buttons, ensuring only one rating is selectable 
             at a time and validating user responses.
@@ -43,4 +55,4 @@ http://palchecker.xyz:3000/
         - **Dynamic Calendar**
           - Developed a calendar that dynamically displays the current month and highlights check-in days to help users track 
             their mental health journey.
-  3) ### Yongho(Mark) Nam : Back-end (EC2, Python)
+  5) ### Yongho(Mark) Nam : Back-end (EC2, Python)
