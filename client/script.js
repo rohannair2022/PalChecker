@@ -103,10 +103,6 @@ function analyticsMsg () {
             // Request data from server
             const URL = "http://palchecker.xyz:3000/"
             sendAndRequestData(URL);
-
-            // Unhide analytics
-            const analytics = document.querySelector('.analytics');
-            analytics.hidden = false;
         }, 1000);
     });
 }
@@ -164,8 +160,11 @@ chatBox.addEventListener('click', (e) => {
 });
 
 function loadAnalytics(score) {
+    // Unhide analytics
+    const analytics = document.querySelector('.analytics');
     loadScore(score);
     loadCalendar();
+    analytics.hidden = false;
 }
 
 function loadScore(score) {
