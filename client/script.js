@@ -97,15 +97,16 @@ function analyticsMsg () {
     
     typeText(analyticsText, div, () => {
         setTimeout(() => {
-            // Redirect to the analytics page
+            // Remove chat
             chatBox.remove();
-            const analytics = document.querySelector('.analytics');
-            loadAnalytics();
-            analytics.hidden = false;
 
-            // request to server
+            // Request data from server
             const URL = "http://palchecker.xyz:3000/"
             sendAndRequestData(URL);
+
+            // Unhide analytics
+            const analytics = document.querySelector('.analytics');
+            analytics.hidden = false;
         }, 1000);
     });
 }
@@ -168,8 +169,8 @@ function loadAnalytics(score) {
 }
 
 function loadScore(score) {
-    const score = document.querySelector('.score');
-    score.textContent = `Score: ${score}%`
+    const scoreDiv = document.querySelector('.score');
+    scoreDiv.textContent = `Score: ${score}%`
 }
 
 function loadCalendar() {
@@ -213,6 +214,6 @@ function sendAndRequestData(url) {
         body: JSON.stringify(ANSWERS)
       })
       .then(response => response.json())
-      .then(data => loadAnalytics(data[score]))
+      .then(data => loadAnalytics(data.score))
       .catch(error => console.error('Error:', error));
 }
