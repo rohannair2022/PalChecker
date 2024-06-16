@@ -13,12 +13,12 @@
 
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-        <!-- Header -->
-        <header>
-            <img src="logo.png" alt="PalChecker App Logo" class="favicon">
-            <span class="app-title"> PalChecker </span>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="PalChecker App Logo" class="favicon">
+        <span class="app-title"> PalChecker </span>
         </header>
 
         <!-- Chat -->
@@ -36,13 +36,15 @@
         <!-- Analytics -->
         <div class="analytics" hidden>
             <div class="score-component">
+                <img class="emoji"/>
                 <div class="score">Score: x%</div>
                 <div class="note">
-                    (This score is an approximate indicator to rate how your day went based on limited data. We plan on expanding research in the future to provide a more accurate answer backed by medical research.)
+                    (This score is an approximate indicator to how your day went based on the data we collected. We plan on furthering research in the future to provide a more medical based answer.)
                 </div>
                 <hr class="separator">
                 <div class="quote">
-                    Some motivational quote!
+                    <p id="quote-text">Loading motivational quote...</p>
+                    <p class="author" id="quote-author"></p>
                 </div>
             </div>
     

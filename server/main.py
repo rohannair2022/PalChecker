@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = ""
+os.environ["REPLICATE_API_TOKEN"] = "INSERT-API-TOKEN-HERE"
 
 
 class Model:
