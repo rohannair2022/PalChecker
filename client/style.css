@@ -132,6 +132,91 @@ header:hover {
     font-weight: 500;
 }
 
+
+/* Score component */
+.score-component {
+    text-align: center;
+    margin-top: 50px; /* Adjust this value as needed */
+}
+
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; 
+}
+
+.note {
+    font-size: 14px;
+    color: #666; 
+    margin-top: 10px;
+}
+
+.separator {
+    width: 50%;
+    margin: 20px auto; 
+    border: none;
+    border-top: 2px solid #ccc; 
+}
+
+.quote {
+    font-style: italic;
+    color: #666;
+}
+
+/* Calendar */
+.calendar {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 70px auto;
+}
+
+.month-header {
+  background-color: #4285f4;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+
+.weekdays div {
+  padding: 5px;
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.days div {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.green {
+  background-color: #4ec952;
+}
+
+.blue-checkmark {
+  background-image: url('checkmark_blue.png');
+  background-size: cover;
+  background-position: center;
+}
+
+
 /* Animations */
 @keyframes fadeIn {
     to {

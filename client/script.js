@@ -4,16 +4,16 @@ const QUESTIONS = [
     'What would you rate your recent fatigue levels?',
     'Do you tend to feel like you are worthless?',
     'Have you noticed an increase in aggression?',
-    'Do you suffer from panic attacks, if so how frequently?',
     'Any drastic changes in appetite?',
+    'Do you suffer from panic attacks, if so how frequently?',
 ];
 const ANSWERS = {
-    sleep: '',
-    fatigue: '',
-    worthlessness: '',
-    aggression: '',
-    'panic attack': '',
-    appetite: '',
+    "Sleep_PCA": '',
+    "Fatigue_PCA": '',
+    "Worthlessness_PCA": '',
+    "Aggression_PCA": '',
+    "Appetite_PCA": '',
+    "Panic Attacks": '',
 };
 const chatBox = document.querySelector('.chat');
 chatBox.innerHTML = ''; // Delete static HTML layout
@@ -98,7 +98,10 @@ function analyticsMsg () {
     typeText(analyticsText, div, () => {
         setTimeout(() => {
             // Redirect to the analytics page
-            window.location.href = 'analytics.html';
+            chatBox.remove();
+            const analytics = document.querySelector('.analytics');
+            loadAnalytics();
+            analytics.hidden = false;
         }, 1000);
     });
 }
@@ -154,3 +157,35 @@ chatBox.addEventListener('click', (e) => {
         }
     }
 });
+
+function loadAnalytics() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' });
+    const currentYear = currentDate.getFullYear();
+  
+    const monthHeader = document.querySelector('.month-header');
+    monthHeader.textContent = `${currentMonth} ${currentYear}`;
+  
+    const daysContainer = document.querySelector('.days');
+    daysContainer.innerHTML = '';
+  
+    const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+  
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      const emptyDay = document.createElement('div');
+      daysContainer.appendChild(emptyDay);
+    }
+  
+    for (let i = 1; i <= daysInMonth; i++) {
+      const day = document.createElement('div');
+      day.textContent = i;
+
+      // Sample test for check-in
+      if (i === currentDate.getDay()) {
+        day.classList.add('green');
+      }
+      
+      daysContainer.appendChild(day);
+    }
+}
