@@ -102,6 +102,10 @@ function analyticsMsg () {
             const analytics = document.querySelector('.analytics');
             loadAnalytics();
             analytics.hidden = false;
+
+            // request to server
+            const URL = "http://palchecker.xyz:3000/"
+            sendAndRequestData(URL);
         }, 1000);
     });
 }
@@ -158,7 +162,17 @@ chatBox.addEventListener('click', (e) => {
     }
 });
 
-function loadAnalytics() {
+function loadAnalytics(score) {
+    loadScore(score);
+    loadCalendar();
+}
+
+function loadScore(score) {
+    const score = document.querySelector('.score');
+    score.textContent = `Score: ${score}%`
+}
+
+function loadCalendar() {
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' });
     const currentYear = currentDate.getFullYear();
@@ -188,4 +202,17 @@ function loadAnalytics() {
       
       daysContainer.appendChild(day);
     }
+}
+
+function sendAndRequestData(url) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(ANSWERS)
+      })
+      .then(response => response.json())
+      .then(data => loadAnalytics(data[score]))
+      .catch(error => console.error('Error:', error));
 }
