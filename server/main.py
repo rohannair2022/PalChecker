@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_1amFZUh8bIR53EJr63QClPgQg8BdBL02mvp9K"
+os.environ["REPLICATE_API_TOKEN"] = ""
 
 
 class Model:
@@ -60,9 +60,9 @@ class Model:
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
-    def _set_response(self, status_code):
+    def _set_response(self, status_code, content_type='application/json'):
         self.send_response(status_code)
-        self.send_header('Content-type', 'application/json')
+        self.send_header('Content-type', content_type)
         self.end_headers()
 
     def do_POST(self):
@@ -97,6 +97,34 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         self._set_response(200)
         self.wfile.write(json.dumps(response).encode('utf-8'))
+
+    def do_GET(self):
+        if self.path == '/':
+            self.path = '/index.html'
+
+        file_path = 'public' + self.path
+        if os.path.exists(file_path) and not os.path.isdir(file_path):
+            ext = os.path.splitext(file_path)[1]
+            content_type = 'application/octet-stream'
+            if ext == '.html':
+                content_type = 'text/html'
+            elif ext == '.css':
+                content_type = 'text/css'
+            elif ext == '.js':
+                content_type = 'application/javascript'
+            elif ext == '.png':
+                content_type = 'image/png'
+            elif ext == '.jpg' or ext == '.jpeg':
+                content_type = 'image/jpeg'
+            elif ext == '.gif':
+                content_type = 'image/gif'
+
+            self._set_response(200, content_type)
+            with open(file_path, 'rb') as file:
+                self.wfile.write(file.read())
+        else:
+            self._set_response(404)
+            self.wfile.write(json.dumps({"error": "File not found"}).encode('utf-8'))
 
 
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=3000):
