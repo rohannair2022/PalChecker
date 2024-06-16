@@ -1,10 +1,12 @@
 # About 
 PalChecker is an interactive daily checker for tracking and maintaining a good lifestyle to balance mental health. The project was created for the IngeniumSTEM Summer 2024 Hackathon. 
 
+http://palchecker.xyz:3000/
+
 # Sponsor Tech Used
 
   1) Balsamiq: Wireframes
-  2) XYZ: Domain Name
+  2) XYZ: Domain Name 
 
 # Contributions
   
