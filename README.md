@@ -17,6 +17,20 @@ PalChecker is an interactive daily checker for tracking and maintining a good li
      ![Part2: Steps taken to create Hybrid AI  Model](MLModel/ReadMePt2.jpg?raw=true "Part2: Steps taken to create Hybrid AI  Model")
      ![Part2: Steps taken to create Hybrid AI  Model](MLModel/ReadmePt3.png?raw=true "Part2: Steps taken to create Hybrid AI  Model")
      
-  3) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
-  4) ### Preet Patel - Front-end 
-  5) ### Yongho(Mark) Nam : Back-end (EC2, Python)
+  2) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
+  3) ### Preet Patel  :  Front-end (JavaScript ES6, HTML, CSS)
+        - **Interactive Chat Interface**
+          - Developed a dynamic chat interface that guides users through mental health-related questions with a typing                                             effect for enhanced engagement.
+        - **User Input Handling and Validation**
+          - Set up event listeners for rating buttons and submit buttons, ensuring only one rating is selectable 
+            at a time and validating user responses.
+        - **Welcome and Submission Messages**
+          - Created functions to display a welcoming message at the start and an appropriate submission message at the
+            end of the questionnaire.
+        - **Data Submission and Analytics Display**
+          - Implemented functionality to send user responses to the server and display personalized analytics 
+            based on the received data.
+        - **Dynamic Calendar**
+          - Developed a calendar that dynamically displays the current month and highlights check-in days to help users track 
+            their mental health journey.
+  4) ### Yongho(Mark) Nam : Back-end (EC2, Python)
