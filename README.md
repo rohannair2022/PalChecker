@@ -1,5 +1,5 @@
 # About 
-PalChecker is an interactive daily checker for tracking and maintining a good lifestyle to balance mental health. The project was created for thr IngeniumStem-2024 Hackathon. 
+PalChecker is an interactive daily checker for tracking and maintaining a good lifestyle to balance mental health. The project was created for the IngeniumSTEM Summer 2024 Hackathon. 
 
 # Sponsor Tech Used
 
