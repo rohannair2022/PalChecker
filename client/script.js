@@ -12,7 +12,7 @@ const ANSWERS = {
     "Fatigue_PCA": '',
     "Worthlessness_PCA": '',
     "Aggression_PCA": '',
-    "Appetite_PCA": '',
+    "Appetite": '',
     "Panic Attacks": '',
 };
 const chatBox = document.querySelector('.chat');
