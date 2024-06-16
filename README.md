@@ -8,9 +8,10 @@ PalChecker is an interactive daily checker for tracking and maintining a good li
 
 # Contributions
   
-  1) ### Rohan Nair  :  Hybrid AI Model
+  1) ### Rohan Nair  :  Hybrid AI Model and Backend Calender (Database)
      ![Part1: Steps taken to create Hybrid AI  Model](MLModel/Untitled.png?raw=true "Part1: Steps taken to create Hybrid AI  Model")
      ![Part2: Steps taken to create Hybrid AI  Model](MLModel/ReadMePt2.jpg?raw=true "Part2: Steps taken to create Hybrid AI  Model")
-  2) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
-  3) ### Preet Patel - Front-end 
-  4) ### Yongho(Mark) Nam : Back-end (EC2, Python)
+     ![Part2: Steps taken to create Hybrid AI  Model](MLModel/ReadmePt3.png?raw=true "Part2: Steps taken to create Hybrid AI  Model")
+  3) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
+  4) ### Preet Patel - Front-end 
+  5) ### Yongho(Mark) Nam : Back-end (EC2, Python)
