@@ -12,19 +12,17 @@ http://palchecker.xyz:3000/
   
   1) ### Rohan Nair  :  Hybrid AI Model and Backend Calender (Database)
 
-     #### Tech Used:
-       - Pandas, MatPlotLib, SeaBorn, Sklearn, Replicate, Javascript ES6(IndexedDB)
      #### Features worked on:
-      - **Data Preproccesing and Visualization**
+      - **Data Preproccesing and Visualization (Pandas, MatPlotLib, SeaBorn)**
 
         ![Part1: Steps taken to create Hybrid AI  Model](MLModel/Untitled.png?raw=true "Part1: Steps taken to create Hybrid AI  Model")
 
-      - **Hybrid AI Model creation**
+      - **Hybrid AI Model creation (Sklearn, Replicate)**
 
         ![Part2: Steps taken to create Hybrid AI  Model](MLModel/ReadMePt2.jpg?raw=true "Part2: Steps taken to create Hybrid AI  Model")
 
-      - **Backend for Dynmaic Calender Functioning (IndexedDB)**
-         
+      - **Backend for Dynmaic Calender Functioning (Javascript ES6(IndexedDB))**
+    
          ![Part1 Calender Backend Functioning](MLModel/ReadmePt3.png?raw=true "Part1 Calender Backend Functioning")
   
   2) ### Rahul Nair  :  Wireframes, Presentation Slides, Research
