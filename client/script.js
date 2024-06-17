@@ -1,6 +1,107 @@
+const dbName = "user_date_db";
+const dbVersion = 2;
+
+// Function to open or create the IndexedDB database
+function openOrCreateDB() {
+  return new Promise((resolve, reject) => {
+    // Check if the database already exists
+    indexedDB.databases().then(dbs => {
+      const dbExists = dbs.some(db => db.name === dbName);
+
+      if (!dbExists) {
+        // Database does not exist, create it
+        const request = indexedDB.open(dbName, dbVersion);
+
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+          const objectStore = db.createObjectStore("user", { keyPath: "date" });
+        };
+
+        request.onerror = (event) => {
+          console.error('Error opening database:', event.target.error);
+          reject(event.target.error);
+        };
+
+        request.onsuccess = (event) => {
+          const db = event.target.result;
+          console.log('Database opened successfully:', db);
+          resolve(db);
+        };
+      } else {
+        // Database already exists, open it
+        const request = indexedDB.open(dbName, dbVersion);
+
+        request.onerror = (event) => {
+          console.error('Error opening database:', event.target.error);
+          reject(event.target.error);
+        };
+
+        request.onsuccess = (event) => {
+          const db = event.target.result;
+          console.log('Database opened successfully:', db);
+          resolve(db);
+        };
+      }
+    }).catch(error => {
+      console.error('Error checking if database exists:', error);
+      reject(error);
+    });
+  });
+}
+
+// Function to add a new date to the database
+function addNewDate(db, dateToAdd) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(["user"], "readwrite");
+    const objectStore = transaction.objectStore("user");
+
+    // Check if the date already exists in the database
+    const getRequest = objectStore.get(dateToAdd);
+
+    getRequest.onsuccess = (event) => {
+      const existingRecord = event.target.result;
+
+      if (!existingRecord) {
+        // Date does not exist in the database, add it
+        const addRequest = objectStore.add({ date: dateToAdd });
+
+        addRequest.onsuccess = (event) => {
+          console.log('New date added successfully:', dateToAdd);
+          resolve();
+        };
+
+        addRequest.onerror = (event) => {
+          console.error('Error adding date:', event.target.error);
+          reject(event.target.error);
+        };
+      } else {
+        // Date already exists in the database
+        console.log('Date already exists in the database:', dateToAdd);
+        resolve();
+      }
+    };
+
+    getRequest.onerror = (event) => {
+      console.error('Error checking date in database:', event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
+
+// Usage example: open or create the database and add a new date
+openOrCreateDB().then(db => {
+  // Add a new date (current date) to the database
+  const currentDate = new Date();
+  return addNewDate(db, currentDate);
+}).catch(error => {
+  console.error('Error opening or creating database:', error);
+});
+
+
+
 const QUESTIONS = [
     '',
-    'Has your sleep been disturbed recently?', 
+    'Has your sleep been disturbed recently?',
     'What would you rate your recent fatigue levels?',
     'Do you tend to feel like you are worthless?',
     'Have you noticed an increase in aggression?',
@@ -24,7 +125,7 @@ function typeText(text, container, callback) {
         if (charIndex < text.length) {
             container.textContent += text.charAt(charIndex);
             charIndex++;
-            setTimeout(typeNextChar, 50); // Adjust typing speed here
+            setTimeout(typeNextChar, 5); // Adjust typing speed here
         } else {
             setTimeout(callback, 500); // Delay before calling the callback
         }
@@ -65,7 +166,7 @@ function createResponseTemplate(questionId) {
 function askQuestion(questionId) {
     const questionDiv = createQuestion(questionId);
     chatBox.appendChild(questionDiv);
-    
+
     typeText(QUESTIONS[questionId], questionDiv, () => {
         const responseDiv = createResponseTemplate(questionId);
         chatBox.appendChild(responseDiv);
@@ -77,10 +178,10 @@ function welcomeMsg() {
     div.className = 'welcome-msg';
     chatBox.append(div);
     const welcomeText = `Welcome to Palchecker 🌟 Your journey to better mental health starts here!
-        Please answer the following questions using the buttons (1 - 5), where
-        1 represents "Never" and 5 is "Always"! You are encouraged to add more
+        Please answer the following questions using the buttons (1 - 4), where
+        1 represents "Never" and 4 is "Always"! You are encouraged to add more
         detail, but it's completely optional.`;
-    
+
     typeText(welcomeText, div, () => {
         setTimeout(() => {
             askQuestion(1);
@@ -94,7 +195,7 @@ function analyticsMsg () {
     chatBox.append(div);
     const analyticsText = `Thank you for using Palchecker! You will be forwarded to the
         analytics page now.`;
-    
+
     typeText(analyticsText, div, () => {
         setTimeout(() => {
             // Remove chat
@@ -137,7 +238,7 @@ chatBox.addEventListener('click', (e) => {
         const responseDiv = e.target.closest('.response');
         const rating = responseDiv.querySelector('.btn.rating.checked').textContent;
         const text = responseDiv.querySelector('.additional-detail').value;
-        
+
         // Remove all response elements
         responseDiv.innerHTML = '';
 
@@ -164,7 +265,23 @@ function loadAnalytics(score) {
     const analytics = document.querySelector('.analytics');
     loadScore(score);
     loadCalendar();
+    loadEmoji(score);
+    fetchQuote();
     analytics.hidden = false;
+}
+
+function loadEmoji(score){
+    const emoji = document.querySelector('.emoji')
+    let emojiSrc;
+    if (score <= 50) {
+        emojiSrc = 'smiley-images/img_2.png';
+    } else if (score <= 60) {
+        emojiSrc = 'smiley-images/img_1.png';
+    } else {
+        emojiSrc = 'smiley-images/img.png';
+    }
+
+    emoji.src = emojiSrc;
 }
 
 function loadScore(score) {
@@ -172,35 +289,72 @@ function loadScore(score) {
     scoreDiv.textContent = `Score: ${score}%`
 }
 
-function loadCalendar() {
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, dbVersion);
+
+        request.onsuccess = (event) => {
+            resolve(event.target.result);
+        };
+
+        request.onerror = (event) => {
+            reject(event);
+        };
+    });
+}
+
+// Function to get all stored dates from IndexedDB
+function getStoredDates(db) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["user"], "readonly");
+        const objectStore = transaction.objectStore("user");
+        const request = objectStore.getAll();
+
+        request.onsuccess = (event) => {
+            const storedDates = event.target.result.map(entry => new Date(entry.date).toDateString());
+            resolve(storedDates);
+        };
+
+        request.onerror = (event) => {
+            console.error("Error fetching stored dates:", event.target.error);
+            reject(event.target.error);
+        };
+    });
+}
+
+// Function to load the calendar
+async function loadCalendar() {
     const currentDate = new Date();
     const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' });
     const currentYear = currentDate.getFullYear();
-  
+
     const monthHeader = document.querySelector('.month-header');
     monthHeader.textContent = `${currentMonth} ${currentYear}`;
-  
+
     const daysContainer = document.querySelector('.days');
     daysContainer.innerHTML = '';
-  
+
     const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-  
+
     for (let i = 0; i < firstDayOfMonth; i++) {
       const emptyDay = document.createElement('div');
       daysContainer.appendChild(emptyDay);
     }
-  
-    for (let i = 1; i <= daysInMonth; i++) {
-      const day = document.createElement('div');
-      day.textContent = i;
 
-      // Sample test for check-in
-      if (i === currentDate.getDay()) {
-        day.classList.add('green');
-      }
-      
-      daysContainer.appendChild(day);
+    const db = await openDatabase();
+    const storedDates = await getStoredDates(db);
+
+    for (let i = 1; i <= daysInMonth; i++) {
+        const day = document.createElement('div');
+        const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString();
+        day.textContent = i;
+
+        if (storedDates.includes(date)) {
+            day.classList.add('green');
+        }
+
+        daysContainer.appendChild(day);
     }
 }
 
@@ -215,4 +369,16 @@ function sendAndRequestData(url) {
       .then(response => response.json())
       .then(data => loadAnalytics(data.score))
       .catch(error => console.error('Error:', error));
+}
+
+async function fetchQuote() {
+    try {
+        const response = await fetch('https://api.quotable.io/random?tags=motivational');
+        const data = await response.json();
+        document.getElementById('quote-text').textContent = data.content;
+        document.getElementById('quote-author').textContent = `- ${data.author}`;
+    } catch (error) {
+        document.getElementById('quote-text').textContent = 'An error occurred while fetching the quote.';
+        document.getElementById('quote-author').textContent = 'PalChecker Team';
+    }
 }

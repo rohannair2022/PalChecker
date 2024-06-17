@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #f0f4f8; 
+    background-color: #f0f4f8;
 }
 
 /* Header */
@@ -14,7 +14,7 @@ header {
     align-items: center;
     gap: 1rem;
     padding: 20px;
-    background-color: #caf0f8; 
+    background-color: #caf0f8;
     opacity: 0;
     animation: fadeIn 2s forwards;
     box-shadow: 0 0 0 transparent;
@@ -31,7 +31,7 @@ header:hover {
 }
 
 .app-title {
-    color: #d8b4fe; 
+    color: #d8b4fe;
     font-family: Coiny, sans-serif;
     font-size: 44px;
     margin-top: 1.4rem;
@@ -79,7 +79,7 @@ header:hover {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    background-color: #ade8f4; 
+    background-color: #ade8f4;
     gap: 10px;
     max-width: 600px;
 }
@@ -142,20 +142,20 @@ header:hover {
 .score {
     font-size: 24px;
     font-weight: bold;
-    color: #333; 
+    color: #333;
 }
 
 .note {
     font-size: 14px;
-    color: #666; 
+    color: #666;
     margin-top: 10px;
 }
 
 .separator {
     width: 50%;
-    margin: 20px auto; 
+    margin: 20px auto;
     border: none;
-    border-top: 2px solid #ccc; 
+    border-top: 2px solid #ccc;
 }
 
 .quote {
@@ -243,4 +243,9 @@ header:hover {
     animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
     max-width: 100%;
     white-space: normal;
+}
+
+.emoji {
+    height: 150px;
+    width: 150px;
 }
