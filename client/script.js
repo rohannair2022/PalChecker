@@ -202,7 +202,7 @@ function analyticsMsg () {
             chatBox.remove();
 
             // Request data from server
-            const URL = "http://palchecker.xyz:3000/"
+            const URL = "main.py"
             sendAndRequestData(URL);
         }, 1000);
     });
@@ -371,12 +371,10 @@ function sendAndRequestData(url) {
       .catch(error => console.error('Error:', error));
 }
 
-async function fetchQuote() {
+function fetchQuote() {
     try {
-        const response = await fetch('https://api.quotable.io/random?tags=motivational');
-        const data = await response.json();
-        document.getElementById('quote-text').textContent = data.content;
-        document.getElementById('quote-author').textContent = `- ${data.author}`;
+        document.getElementById('quote-text').textContent = 'It takes courage to grow up and become who you really are';
+        document.getElementById('quote-author').textContent = 'E.E. Cummings';
     } catch (error) {
         document.getElementById('quote-text').textContent = 'An error occurred while fetching the quote.';
         document.getElementById('quote-author').textContent = 'PalChecker Team';
