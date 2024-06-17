@@ -178,8 +178,8 @@ function welcomeMsg() {
     div.className = 'welcome-msg';
     chatBox.append(div);
     const welcomeText = `Welcome to Palchecker 🌟 Your journey to better mental health starts here!
-        Please answer the following questions using the buttons (1 - 5), where
-        1 represents "Never" and 5 is "Always"! You are encouraged to add more
+        Please answer the following questions using the buttons (1 - 4), where
+        1 represents "Never" and 4 is "Always"! You are encouraged to add more
         detail, but it's completely optional.`;
 
     typeText(welcomeText, div, () => {
@@ -202,7 +202,7 @@ function analyticsMsg () {
             chatBox.remove();
 
             // Request data from server
-            const URL = "http://palchecker.xyz:3000/"
+            const URL = "main.py"
             sendAndRequestData(URL);
         }, 1000);
     });
@@ -371,12 +371,10 @@ function sendAndRequestData(url) {
       .catch(error => console.error('Error:', error));
 }
 
-async function fetchQuote() {
+function fetchQuote() {
     try {
-        const response = await fetch('https://api.quotable.io/random?tags=motivational');
-        const data = await response.json();
-        document.getElementById('quote-text').textContent = data.content;
-        document.getElementById('quote-author').textContent = `- ${data.author}`;
+        document.getElementById('quote-text').textContent = 'It takes courage to grow up and become who you really are';
+        document.getElementById('quote-author').textContent = 'E.E. Cummings';
     } catch (error) {
         document.getElementById('quote-text').textContent = 'An error occurred while fetching the quote.';
         document.getElementById('quote-author').textContent = 'PalChecker Team';
