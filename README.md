@@ -1,7 +1,8 @@
 # About 
 PalChecker is an interactive daily checker for tracking and maintaining a good lifestyle to balance mental health. It gives the user a way to reflect on their day by posing questions about it, which has been shown to increase emotional control—a crucial skill for managing stress, anxiety, and depression. The user creates a feeling of routine in their life by responding to the question every day, which has been shown to lessen anxiety and other issues. The score that the website offers gives the user a way to assess how their days are going and gives them motivation to improve. 
 
-https://www.youtube.com/watch?v=k9vFrkKEfUQ
+[![Watch the demo](https://img.youtube.com/vi/k9vFrkKEfUQ/maxresdefault.jpg)](
+https://www.youtube.com/watch?v=k9vFrkKEfUQ)
 
 
 # Contributions
